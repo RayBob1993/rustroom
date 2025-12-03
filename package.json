@@ -1,14 +1,22 @@
 {
   "name": "rustroom",
   "type": "module",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "serve": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "analyze": "nuxi analyze",
     "postinstall": "nuxt prepare",
-    "lint": "eslint .  --fix"
+    "lint": "eslint .  --fix",
+    "prepare": "husky",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "packageManager": "pnpm@10.24.0",
+  "engines": {
+    "node": "22.17.1"
   },
   "dependencies": {
     "@nuxtjs/i18n": "10.2.1",
@@ -17,14 +25,18 @@
     "vue-router": "4.6.3"
   },
   "devDependencies": {
-    "@nuxt/eslint": "1.10.0",
-    "@nuxt/eslint-config": "1.10.0",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
+    "@commitlint/cli": "20.1.0",
+    "@commitlint/config-conventional": "20.0.0",
+    "@nuxt/eslint": "1.11.0",
+    "@nuxt/eslint-config": "1.11.0",
     "@stylistic/eslint-plugin": "5.6.1",
     "@vue/eslint-config-typescript": "14.6.0",
     "eslint": "9.39.1",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-unused-imports": "4.3.0",
-    "eslint-plugin-vue": "10.6.0",
+    "eslint-plugin-vue": "10.6.2",
     "typescript": "5.9.3"
   }
 }
