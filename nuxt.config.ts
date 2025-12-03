@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     './modules/alerts',
     './modules/bans',
     './modules/catalog',
-    './modules/profile',
+    './modules/user',
     './modules/rules',
     './modules/servers',
     './modules/statistics',
