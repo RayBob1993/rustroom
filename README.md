@@ -1,75 +1,64 @@
-# Nuxt Minimal Starter
+# 🤝 RustRoom Frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 🎮 Системные требования
 
-## Setup
+* [Node.js](https://nodejs.org/en/download/package-manager) >= 22.17.1
+* [pnpm](https://pnpm.io/installation) >= 10.24.0
 
-Make sure to install dependencies:
+## 🔗 Ссылки окружений
 
-```bash
-# npm
-npm install
+* Макеты - [https://www.figma.com](https://www.figma.com)
+* API Documentation - [https://mysite.com/](https://mysite.com/)
+* live - [https://mysite.com/](https://mysite.com/)
+* dev - [https://mysite.com/](https://mysite.com/)
 
-# pnpm
+## 🔧 Настройка окружения для локальной разработки
+
+Создать в корне проекта файл `.env` и внести в него следующие настройки
+``` dotenv
+NODE_ENV=development
+
+# Порт для старта nuxt сервера
+APP_PORT=3000
+
+# Адрес сервера с api
+API_HOST=https://my-site.ru
+
+# Раздел с api
+API_PREFIX=/api
+```
+
+## ❗ Информация
+
+> Если вы используете WebStorm, то не забудьте включить в настройках `eslint` и `stylelint`.
+> Так же, для `stylelint` добавить обработку `scss` и `vue` файлов.
+> Для удобства, в `eslint` включите авто применение линтера
+
+## 🚀 Запуск проекта
+
+### Установка зависимостей
+``` bash
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+### Запуск локального сервера
+``` bash
+pnpm serve
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+### Запуск nuxt на production сервере
+``` bash
+pnpm build && pnpm start
 ```
 
-Locally preview production build:
+## 🪛 Инструменты
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+### Линтинг кода
+``` bash
+$ pnpm lint
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Тесты
+``` bash
+$ pnpm test
+```

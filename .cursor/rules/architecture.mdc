@@ -1,0 +1,73 @@
+---
+description: Архитектура проекта
+globs:
+alwaysApply: true
+---
+
+### Стек
+- Nuxt 4 (SSR)
+- Vue 3
+- i18n
+- Typescript
+- eslint
+- pnpm
+- husky
+- lintstaged
+- scss
+- commitlint
+- DDD Clean Architecture
+
+### Описание структуры проекта
+Логика разделения кода основана на nuxt модулях. Каждая сущность определяется как модуль в папке modules, в корне проекта.
+Подключение локального модуля происходит в nuxt.config.ts.
+
+### Структура модуля
+📁 <moduleName>
+├── 📁 runtime
+│   ├── 📁 __tests__ - unit тесты модуля
+│   ├── 📁 core - Реализация бизнес логики модуля
+│   │   ├── 📁 domain - Доменный слой
+│   │   │   ├── 📁 models - Модели домена
+│   │   │   │   ├── 📄 <ModuleName>Model.ts - например UserModel.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   ├── 📁 repositories - Интерфейсы репозиториев
+│   │   │   │   ├── 📄 <ModuleName>Repository.ts - например UserRepository.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   ├── 📁 factories - Фабричные методы
+│   │   │   │   ├── 📄 <ModuleName>Repository.ts - например UserFactory.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   └── 📄 index.ts
+│   │   ├── 📁 infrastructure - Инфраструктурный слой
+│   │   │   ├── 📁 repositories - Реализация репозиториев
+│   │   │   │   ├── 📄 <ModuleName>RepositoryImpl.ts - например UserRepositoryImpl.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   ├── 📁 api - Типы для API
+│   │   │   │   ├── 📄 <ModuleName>Api.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   └── 📄 index.ts
+│   │   ├── 📁 application - Прикладной слой
+│   │   │   ├── 📁 use-cases - Сценарии использования
+│   │   │   │   ├── 📄 <ModuleName>UseCase.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   ├── 📁 dtos - Data Transfer Objects
+│   │   │   │   ├── 📄 <ModuleName>DTO.ts
+│   │   │   │   └── 📄 index.ts
+│   │   │   └── 📄 index.ts
+│   │   └── 📄 index.ts
+│   ├── 📁 composables - Композиции
+│   │   ├── 📄 use<ModuleName>.ts - например useUser.ts
+│   │   └── 📄 index.ts
+│   ├── 📁 components - Компоненты модуля
+│   │   ├── 📄 V<ModuleName><Specification>.ts - например VUser.vue или VUserList.vue
+│   │   └── 📄 index.ts
+│   ├── 📁 plugins - nuxt плагины для интеграции функций в фреймворк
+│   │   └── 📄 <ModuleName>.plugin.ts
+│   └── 📁 middleware - nuxt middleware для интеграции логики роутера в фреймворк
+│       └── 📄 <ModuleName>.middleware.ts
+└── 📄 index.ts - исполняемый файл nuxt модуля
+
+### Описание архитектуры
+- Модули должны быть максимально не зависимы друг от друга
+- Интеграция модуля в vue должна быть посредством provide/inject через nuxt плагины внутри модуля
+- Внутри модуля, в разделе core должна быть только реализация бизнес логики (DDD). В нём не должно быть ничего связанного с фреймворком и прочей инфраструктурой проекта, кроме описания типов api.
+- Хранение ssr состояний(например данные api) должно быть через useState у nuxt.
